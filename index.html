@@ -3,11 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050714">
-<meta name="description" content="StudyHub student dashboard and learning resources">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon-192.png" type="image/png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>StudyHub | Welcome to the Future</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
@@ -162,6 +157,13 @@ h2{font-family:'Noto Sans Devanagari',Inter,sans-serif;font-size:clamp(1.2rem,2.
 
 
 </style>
+
+<meta name="theme-color" content="#050714">
+<meta name="description" content="StudyHub — notes, learning resources, and focus timer for students.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
 </head>
 <body>
 <main class="universe" id="homePage">
@@ -548,10 +550,14 @@ renderTimer();
 })();
 </script>
 
+
 <script>
-if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(err => console.warn("Service worker registration failed:", err)));
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(err => console.warn('StudyHub offline support unavailable:', err));
+  });
 }
 </script>
+
 </body>
 </html>
